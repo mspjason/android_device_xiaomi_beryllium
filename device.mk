@@ -13,12 +13,6 @@ $(call inherit-product-if-exists, vendor/xiaomi/beryllium/beryllium-vendor.mk)
 TARGET_SCREEN_HEIGHT := 2246
 TARGET_SCREEN_WIDTH := 1080
 
-# FM
-PRODUCT_PACKAGES += \
-    FM2 \
-    libqcomfm_jni \
-    qcom.fmradio
-
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += \
     $(LOCAL_PATH)/overlay \
@@ -85,3 +79,15 @@ PRODUCT_COPY_FILES += \
 # PocketMode
 PRODUCT_PACKAGES += \
     XiaomiPocketMode
+    
+# OpenGapps
+GAPPS_VARIANT := pico
+GAPPS_FORCE_PACKAGE_OVERRIDES := true
+GAPPS_PRODUCT_PACKAGES += CalendarGooglePrebuilt
+GAPPS_PRODUCT_PACKAGES += LatinImeGoogle
+GAPPS_PRODUCT_PACKAGES += Maps
+GAPPS_PRODUCT_PACKAGES += PrebuiltGmail
+GAPPS_PRODUCT_PACKAGES += YouTube
+GAPPS_EXCLUDED_PACKAGES := GoogleTTS
+
+$(call inherit-product, vendor/opengapps/build/opengapps-packages.mk)    
